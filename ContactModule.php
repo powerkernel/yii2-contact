@@ -5,6 +5,7 @@ namespace harrytang\contact;
 class ContactModule extends \yii\base\Module
 {
     public $controllerNamespace = 'harrytang\contact\controllers';
+    public $defaultRoute='web';
 
    /**
     * @inheritdoc
@@ -16,9 +17,9 @@ class ContactModule extends \yii\base\Module
         // $this->params['foo'] = 'bar';
         // ...  other initialization code ...
         // initialize the module with the configuration loaded from config.php
-        //\Yii::configure($this, require(__DIR__ . '/config.php'));
-        //$this->registerTranslations();
-        //$this->registerMailer();
+        \Yii::configure($this, require(__DIR__ . '/config.php'));
+        $this->registerTranslations();
+        $this->registerMailer();
     }
 
    /**

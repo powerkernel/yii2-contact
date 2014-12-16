@@ -22,10 +22,8 @@ or add
 to the require section of your `composer.json` file.
 
 
-Usage
------
+INSTALL
+-------
 
-Once the extension is installed, simply use it in your code by  :
-
-```php
-<?= \harrytang\contact\AutoloadExample::widget(); ?>```
+```
+yii migrate --migrationPath=@vendor/harrytang/yii2-contact/migrations/ --migrationTable={{%contact_migration}}
