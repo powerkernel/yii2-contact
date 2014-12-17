@@ -11,7 +11,8 @@ use \harrytang\contact\ContactModule;
 
 return [
     'Contact'=>[
-        ['label' => ContactModule::t('Manage'), 'url' => ['/contact/web/index'], 'active'=>Core::checkMCA('contact', 'web', '*')],
+        ['label' => ContactModule::t('Manage'), 'url' => ['/contact/web/index'], 'active'=>Core::checkMCA('contact', 'web', ['index', 'view'])],
+        ['label' => ContactModule::t('Settings'), 'url' => ['/contact/web/setting'], 'active'=>Core::checkMCA('contact', 'web', 'setting')],
     ],
 ];
 

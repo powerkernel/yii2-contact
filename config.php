@@ -8,10 +8,5 @@
 return [
 
     'params' => [
-        'address' => '',
-        'city' =>'',
-        'country' => '',
-        'phone' => '',
-        'latLng'=>'', //10.795663, 106.657430
     ]
 ];

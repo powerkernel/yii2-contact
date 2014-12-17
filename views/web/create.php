@@ -12,8 +12,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
 // GMaps
 $map=false;
-if(!empty(ContactModule::getInstance()->params['latLng'])){
-    $latLng=ContactModule::getInstance()->params['latLng'];
+if(!empty($settings['latLng'])){
+    $latLng=$settings['latLng'];
     $name=Yii::$app->name;
     $js=<<<EOD
 function initialize() {
@@ -57,6 +57,7 @@ EOD;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
+
     <div>
         <hr/>
     </div>
@@ -70,17 +71,17 @@ EOD;
         <div class="col-xs-12 col-sm-12 col-md-<?= $map?'5':'12' ?>">
             <h2><?= Yii::$app->name ?></h2>
 
-            <?php if(!empty(ContactModule::getInstance()->params['address'])):?>
+            <?php if(!empty($settings['address'])):?>
             <p>
                 <abbr title="<?= ContactModule::t('Address') ?>" class="glyphicon glyphicon-map-marker"></abbr>
-                <?= ContactModule::getInstance()->params['address'] ?><br />
-                <?= ContactModule::getInstance()->params['city'] ?>, <?= ContactModule::getInstance()->params['country'] ?>
+                <?= $settings['address'] ?><br />
+                <?= $settings['city'] ?>, <?= $settings['country'] ?>
             </p>
             <?php endif;?>
 
-            <?php if(!empty(ContactModule::getInstance()->params['phone'])):?>
+            <?php if(!empty($settings['phone'])):?>
             <p><abbr title="<?= ContactModule::t('Phone') ?>" class="glyphicon glyphicon-earphone"></abbr>
-                <?= ContactModule::getInstance()->params['phone'] ?></p>
+                <?= $settings['phone'] ?></p>
             <?php endif;?>
 
             <?= $this->render('_form', [

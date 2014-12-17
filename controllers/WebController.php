@@ -3,6 +3,7 @@
 namespace harrytang\contact\controllers;
 
 use harrytang\contact\ContactModule;
+use harrytang\contact\models\Setting;
 use Yii;
 use harrytang\contact\models\Contact;
 use harrytang\contact\models\search\Contact as ContactSearch;
@@ -31,7 +32,7 @@ class WebController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'view', 'delete', 'done'],
+                        'actions' => ['index', 'view', 'delete', 'done', 'setting'],
                         'allow' => true,
                         'roles' => ['staff'],
                     ],
@@ -60,6 +61,31 @@ class WebController extends Controller
         ]);
     }
 
+
+    /**
+     * Setting
+     * @return string
+     */
+    public function actionSetting()
+    {
+        $this->layout = '@vendor/harrytang/yii2-admin/views/layouts/admin.php';
+        $models = Setting::find()->all();
+
+        if (Yii::$app->request->isPost) {
+            foreach ($models as $model) {
+                $value = Yii::$app->request->post($model->key);
+                $model->value = $value;
+                $model->save();
+            }
+            return $this->refresh();
+        } else {
+
+            return $this->render('setting', [
+                'models' => $models,
+            ]);
+        }
+    }
+
     /**
      * Displays a single Contact model.
      * @param integer $id
@@ -80,7 +106,10 @@ class WebController extends Controller
      */
     public function actionCreate()
     {
+        $settings = Setting::loadAsArray();
         $model = new Contact();
+
+
         $model->setScenario('create');
         if (!Yii::$app->user->isGuest) {
             $model->name = Yii::$app->user->identity->username;
@@ -101,6 +130,7 @@ class WebController extends Controller
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'settings' => $settings
             ]);
         }
 
@@ -118,8 +148,7 @@ class WebController extends Controller
         if ($model->save()) {
 
             return $this->redirect(['index']);
-        }
-        else  var_dump($model->errors);
+        } else  var_dump($model->errors);
     }
 
     /**
