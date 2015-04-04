@@ -1,0 +1,28 @@
+<?php
+
+return array(
+    'Address' => '#Address#',
+    'City' => '#City#',
+    'Contact' => '#Contact#',
+    'Contact Us' => '#Contact Us#',
+    'Content' => '#Content#',
+    'Country' => '#Country#',
+    'Created At' => '#Created At#',
+    'Done' => '#Done#',
+    'Email' => '#Email#',
+    'ID' => '#ID#',
+    'If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.' => '#If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.#',
+    'Key' => '#Key#',
+    'LatLng' => '#LatLng#',
+    'Manage' => '#Manage#',
+    'Name' => '#Name#',
+    'New' => '#New#',
+    'Phone' => '#Phone#',
+    'Save' => '#Save#',
+    'Settings' => '#Settings#',
+    'Status' => '#Status#',
+    'Subject' => '#Subject#',
+    'Submit' => '#Submit#',
+    'Updated At' => '#Updated At#',
+    'Value' => '#Value#',
+);
