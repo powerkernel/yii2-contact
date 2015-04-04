@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model harrytang\contact\models\Contact */
 
 $this->title = $model->subject;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('contact', 'Contacts'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('contact', 'Contact'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="contact-view">
