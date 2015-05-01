@@ -80,8 +80,10 @@ EOD;
             <?php endif;?>
 
             <?php if(!empty($settings['phone'])):?>
-            <p><abbr title="<?= ContactModule::t('Phone') ?>" class="glyphicon glyphicon-earphone"></abbr>
-                <?= $settings['phone'] ?></p>
+            <p><abbr title="<?= ContactModule::t('Phone') ?>" class="glyphicon glyphicon-phone-alt"></abbr>
+                <?= $settings['phone'] ?>
+                <a href="tel:<?= $settings['phone'] ?>" class="btn btn-xs btn-primary hidden-sm hidden-md hidden-lg"><span class="glyphicon glyphicon-earphone"></span> <?= ContactModule::t('Call') ?></a>
+            </p>
             <?php endif;?>
 
             <?= $this->render('_form', [
