@@ -75,7 +75,12 @@ class WebController extends Controller
             foreach ($models as $model) {
                 $value = Yii::$app->request->post($model->key);
                 $model->value = $value;
-                $model->save();
+                if($model->save()){
+                    Yii::$app->session->setFlash('success', ContactModule::t('Contact information has been updated.'));
+                }
+                else {
+                    Yii::$app->session->setFlash('error', ContactModule::t('An error occurred while updating contact information.'));
+                }
             }
             return $this->refresh();
         } else {
