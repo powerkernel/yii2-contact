@@ -3,9 +3,11 @@
 return array(
     'Address' => 'Địa chỉ',
     'Are you sure you want to delete this item?' => 'Bạn có chắc là muốn xóa?',
+    'Call' => 'Gọi',
     'City' => 'Tỉnh/Thành',
     'Contact' => 'Liên Hệ',
     'Contact Us' => 'Liên Hệ Chúng Tôi',
+    'Contact information has been updated.' => 'Thông tin liên hệ đã được cập nhật.',
     'Content' => 'Nội Dung',
     'Country' => 'Quốc Gia',
     'Created At' => 'Ngày Tạo',
