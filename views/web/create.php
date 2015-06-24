@@ -32,7 +32,7 @@ function initialize() {
     });
 
     var infowindow = new google.maps.InfoWindow({
-        content: "<b>{$name}</b>"
+        content: "<b>{$name}</b><br/>{$settings['address']}<br/>{$settings['city']}, {$settings['country']}"
     });
     infowindow.open(marker.get("map"), marker);
     google.maps.event.addListener(marker, "click", function() {
@@ -53,7 +53,7 @@ EOD;
 }
 
 ?>
-<div class="contact-create">
+<div class="contact-web-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
