@@ -3,6 +3,7 @@
 namespace harrytang\contact\models;
 
 use harrytang\contact\ContactModule;
+use himiklab\yii2\recaptcha\ReCaptchaValidator;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 
@@ -84,7 +85,8 @@ class Contact extends \yii\db\ActiveRecord
             [['status', 'created_at', 'updated_at'], 'integer'],
             [['name', 'email', 'subject'], 'string', 'max' => 255],
 
-            ['verifyCode', 'captcha', 'captchaAction'=>'/site/captcha', 'on'=>['create']],
+            //['verifyCode', 'captcha', 'captchaAction'=>'/site/captcha', 'on'=>['create']],
+            [['verifyCode'], ReCaptchaValidator::className(), 'on'=>['create']]
         ];
     }
 
