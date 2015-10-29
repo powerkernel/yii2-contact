@@ -81,6 +81,9 @@ class WebController extends Controller
                 if($model->save()){
                     Yii::$app->session->setFlash('success', Yii::$app->getModule('contact')->t('Contact configuration has been successfully saved.'));
                 }
+                else {
+                    Yii::$app->session->setFlash('error', Yii::$app->getModule('contact')->t('An error occurred while updating contact information.'));
+                }
             }
             return $this->refresh();
         } else {
@@ -126,7 +129,7 @@ class WebController extends Controller
 
             // send mail
             Yii::$app->mailer->compose('newContact', ['model' => $model])
-                ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name])
+                ->setFrom([Yii::$app->params['settings']['supportEmail'] => Yii::$app->name])
                 ->setTo($model->email)
                 ->setSubject(ContactModule::t('{USER} have contacted you.', ['USER' => $model->name]))
                 ->send();
@@ -150,10 +153,8 @@ class WebController extends Controller
     {
         $model = $this->findModel($id);
         $model->status = Contact::STATUS_DONE;
-        if ($model->save()) {
-
-            return $this->redirect(['index']);
-        } else  var_dump($model->errors);
+        $model->save();
+        return $this->redirect(['index']);
     }
 
     /**

@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model harrytang\contact\models\Contact */
 
 $this->title = $model->subject;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('contact', 'Contacts'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('contact', 'Contact'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="contact-view">
@@ -35,11 +35,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 
+
+
     <p>
         <?= Html::a(Yii::t('contact', 'Reply'), 'mailto:' . Html::encode($model->email), ['class' => 'btn btn-primary']) ?>
-        <?php if ($model->status != \harrytang\contact\models\Contact::STATUS_DONE): ?>
-            <?= Html::a(Yii::t('contact', 'Make Done'), ['done', 'id' => $model->id], ['class' => 'btn btn-success']) ?>
-        <?php endif; ?>
+        <?php if($model->status!=\harrytang\contact\models\Contact::STATUS_DONE):?>
+        <?= Html::a(Yii::t('contact', 'Make Done'), ['done', 'id' => $model->id], ['class' => 'btn btn-success']) ?>
+        <?php endif;?>
         <?= Html::a(Yii::t('contact', 'Delete'), ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
