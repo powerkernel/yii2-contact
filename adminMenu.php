@@ -9,10 +9,11 @@
 use \harrytang\core\Core;
 use \harrytang\contact\ContactModule;
 
+$json=json_encode(['label'=>'Contact', 'icon'=>'fa fa-envelope']);
 return [
-    'Contact'=>[
-        ['label' => ContactModule::t('Manage'), 'url' => ['/contact/web/index'], 'active'=>Core::checkMCA('contact', 'web', ['index', 'view'])],
-        ['label' => ContactModule::t('Settings'), 'url' => ['/contact/web/setting'], 'active'=>Core::checkMCA('contact', 'web', 'setting')],
+    $json=>[
+        ['icon'=>'fa fa-list', 'label' => ContactModule::t('Manage'), 'url' => ['/contact/web/index'], 'active'=>Core::checkMCA('contact', 'web', ['index', 'view'])],
+        ['icon'=>'fa fa-cog', 'label' => ContactModule::t('Settings'), 'url' => ['/contact/web/setting'], 'active'=>Core::checkMCA('contact', 'web', 'setting')],
     ],
 ];
 

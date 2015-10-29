@@ -12,18 +12,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="contact-view">
 
-    <h1 class=""><?= Html::encode($this->title) ?></h1>
-
-
-    <div>
-        <hr/>
-    </div>
-
-
-    <p>
-        <?= nl2br(Html::encode($model->content)) ?>
-    </p>
-
     <div style="font-size: 0.85em; font-style: italic; margin-bottom: 10px;">
         <div>
             <?= Html::encode($model->name) ?> (<a
@@ -35,12 +23,23 @@ $this->params['breadcrumbs'][] = $this->title;
 
     </div>
 
+    <div class="box box-info">
+        <div class="box-body">
+            <p>
+                <?= nl2br(Html::encode($model->content)) ?>
+            </p>
+        </div>
+    </div>
+
+
+
+
 
     <p>
         <?= Html::a(Yii::t('contact', 'Reply'), 'mailto:' . Html::encode($model->email), ['class' => 'btn btn-primary']) ?>
-        <?php if($model->status!=\harrytang\contact\models\Contact::STATUS_DONE):?>
-        <?= Html::a(Yii::t('contact', 'Make Done'), ['done', 'id' => $model->id], ['class' => 'btn btn-success']) ?>
-        <?php endif;?>
+        <?php if ($model->status != \harrytang\contact\models\Contact::STATUS_DONE): ?>
+            <?= Html::a(Yii::t('contact', 'Make Done'), ['done', 'id' => $model->id], ['class' => 'btn btn-success']) ?>
+        <?php endif; ?>
         <?= Html::a(Yii::t('contact', 'Delete'), ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [

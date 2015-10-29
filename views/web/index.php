@@ -10,38 +10,43 @@ use yii\widgets\Pjax;
 
 $this->title = Yii::t('contact', 'Contact');
 //$this->params['breadcrumbs'][] = $this->title;
+$this->registerJs('$(document).on("pjax:send", function(){ $(".grid-view-overlay").removeClass("hidden");});$(document).on("pjax:complete", function(){ $(".grid-view-overlay").addClass("hidden");})');
 ?>
 <div class="contact-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="box box-primary">
+        <div class="box-body">
 
-    <div>
-        <hr/>
-    </div>
-    <?php //echo $this->render('_search', ['model' => $searchModel]); ?>
+            <div class="table-responsive">
+                <?php Pjax::begin(); ?>
+                <?= GridView::widget([
+                    'dataProvider' => $dataProvider,
+                    'filterModel' => $searchModel,
+                    'columns' => [
+                        //['class' => 'yii\grid\SerialColumn'],
+                        'id',
+                        'name',
+                        'email:email',
+                        'subject',
+                        ['attribute' => 'created_at', 'format' => 'dateTime'],
+                        ['attribute' => 'status', 'value' => function ($model) {
+                            return $model->statusText;
+                        }, 'filter' => \harrytang\contact\models\Contact::getStatusOption()],
+                        [
+                            'class' => 'yii\grid\ActionColumn',
+                            'template' => '{view}{delete}'
+                        ],
+                    ],
+                ]); ?>
+                <?php Pjax::end(); ?>
+            </div>
 
-    <div class="table-responsive">
-        <?php Pjax::begin(); ?>
-        <?= GridView::widget([
-            'dataProvider' => $dataProvider,
-            'filterModel' => $searchModel,
-            'columns' => [
-                //['class' => 'yii\grid\SerialColumn'],
-                'id',
-                'name',
-                'email:email',
-                'subject',
-                ['attribute' => 'created_at', 'format' => 'dateTime'],
-                ['attribute' => 'status', 'value' => function ($model) {
-                    return $model->statusText;
-                }, 'filter' => \harrytang\contact\models\Contact::getStatusOption()],
-                [
-                    'class' => 'yii\grid\ActionColumn',
-                    'template' => '{view}{delete}'
-                ],
-            ],
-        ]); ?>
-        <?php Pjax::end(); ?>
+        </div>
+        <!-- Loading (remove the following to stop the loading)-->
+        <div class="overlay grid-view-overlay hidden">
+            <i class="fa fa-refresh fa-spin"></i>
+        </div>
+        <!-- end loading -->
     </div>
 
 </div>

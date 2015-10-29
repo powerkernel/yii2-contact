@@ -19,6 +19,9 @@ class WebController extends Controller
 {
     public $defaultAction = 'create';
 
+    /**
+     * @return array
+     */
     public function behaviors()
     {
         return [
@@ -51,7 +54,7 @@ class WebController extends Controller
      */
     public function actionIndex()
     {
-        $this->layout = '@vendor/harrytang/yii2-admin/views/layouts/admin.php';
+        $this->layout = '@harrytang/core/layouts/adminlte.php';
         $searchModel = new ContactSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -68,14 +71,16 @@ class WebController extends Controller
      */
     public function actionSetting()
     {
-        $this->layout = '@vendor/harrytang/yii2-admin/views/layouts/admin.php';
+        $this->layout = '@harrytang/core/layouts/adminlte.php';
         $models = Setting::find()->all();
 
         if (Yii::$app->request->isPost) {
             foreach ($models as $model) {
                 $value = Yii::$app->request->post($model->key);
                 $model->value = $value;
-                $model->save();
+                if($model->save()){
+                    Yii::$app->session->setFlash('success', Yii::$app->getModule('contact')->t('Contact configuration has been successfully saved.'));
+                }
             }
             return $this->refresh();
         } else {
@@ -93,7 +98,7 @@ class WebController extends Controller
      */
     public function actionView($id)
     {
-        $this->layout = '@vendor/harrytang/yii2-admin/views/layouts/admin.php';
+        $this->layout = '@harrytang/core/layouts/adminlte.php';
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
