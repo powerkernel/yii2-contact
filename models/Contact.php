@@ -87,7 +87,9 @@ class Contact extends ActiveRecord
             [['name', 'email', 'subject'], 'string', 'max' => 255],
 
             //['verifyCode', 'captcha', 'captchaAction'=>'/site/captcha', 'on'=>['create']],
-            [['verifyCode'], ReCaptchaValidator::className(), 'on'=>['create']]
+            //[['verifyCode'], ReCaptchaValidator::className(), 'on'=>['create']],
+            [['verifyCode'], 'required', 'message'=> Yii::$app->getModule('contact')->t('Prove you are NOT a robot'), 'on'=>['create']],
+            [['verifyCode'], ReCaptchaValidator::className(), 'message'=> Yii::$app->getModule('contact')->t('Prove you are NOT a robot')]
         ];
     }
 
