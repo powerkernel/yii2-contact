@@ -3,7 +3,6 @@
 use harrytang\contact\ContactModule;
 use yii\helpers\Html;
 
-
 /* @var $this yii\web\View */
 /* @var $model harrytang\contact\models\Contact */
 
