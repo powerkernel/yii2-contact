@@ -8,7 +8,7 @@
 
 return [
     'left' => [
-        ['label' => \harrytang\contact\ContactModule::t('Contact'), 'url' => ['/contact/web/create']],
+        ['label' => Yii::$app->getModule('contact')->t('Contact'), 'url' => ['/contact/web/create']],
     ],
     'right' => [
     ],

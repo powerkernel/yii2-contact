@@ -23,6 +23,7 @@ return array(
     'Name' => 'Họ Tên',
     'New' => 'Mới',
     'Phone' => 'Điện Thoại',
+    'Prove you are NOT a robot' => 'Chứng minh bạn KHÔNG PHẢI người máy',
     'Reply' => 'Phản Hồi',
     'Save' => 'Lưu',
     'Settings' => 'Cấu Hình',
