@@ -9,6 +9,11 @@
 use \harrytang\core\Core;
 use \harrytang\contact\ContactModule;
 
+if(!Yii::$app->user->can('staff')){
+    return [];
+}
+
+
 $json=json_encode(['label'=>Yii::$app->getModule('contact')->t('Contact'), 'icon'=>'fa fa-envelope']);
 return [
     $json=>[
