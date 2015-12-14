@@ -36,8 +36,9 @@ class ContactModule extends \yii\base\Module
     public function registerTranslations()
     {
         \Yii::$app->i18n->translations['contact'] = [
-            'class' => 'harrytang\i18n\MyPhpMessageSource',
-            'basePath'=>$this->basePath.DIRECTORY_SEPARATOR.'messages',
+//            'class' => 'harrytang\i18n\MyPhpMessageSource',
+//            'basePath'=>$this->basePath.DIRECTORY_SEPARATOR.'messages',
+            'class' => 'harrytang\i18n\MyDbMessageSource',
             'on missingTranslation' => function ($event) {
                 $event->sender->insertMissingTranslation($event);
             },
