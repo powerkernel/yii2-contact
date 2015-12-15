@@ -11,6 +11,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 // GMaps
 $map = false;
+$language=Yii::$app->language;
 if (!empty($settings['latLng'])) {
     $latLng = $settings['latLng'];
     $name = Yii::$app->name;
@@ -42,7 +43,7 @@ function initialize() {
 function loadScript() {
     var script = document.createElement('script');
     script.type = 'text/javascript';
-    script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&callback=initialize';
+    script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&callback=initialize&language={$language}';
     document.body.appendChild(script);
 }
 window.onload = loadScript;
