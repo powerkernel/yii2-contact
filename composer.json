@@ -1,22 +1,21 @@
 {
-    "name": "harrytang/yii2-contact",
+    "name": "modernkernel/yii2-contact",
     "description": "Yii2 Contact",
     "type": "yii2-extension",
-    "keywords": ["yii2","extension"],
+    "keywords": ["yii2","extension", "contact"],
     "license": "Apache-2.0",
     "authors": [
         {
             "name": "Harry Tang",
-            "email": "giaduy@gmail.com"
+            "email": "harry@modernkernel.com"
         }
     ],
     "require": {
-        "yiisoft/yii2": "*",
-        "himiklab/yii2-recaptcha-widget" : "*"
+        "yiisoft/yii2": "*"
     },
     "autoload": {
         "psr-4": {
-            "harrytang\\contact\\": ""
+            "modernkernel\\contact\\": ""
         }
     }
 }
