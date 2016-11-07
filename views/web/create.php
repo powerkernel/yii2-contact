@@ -1,17 +1,16 @@
 <?php
 
-use harrytang\contact\ContactModule;
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model harrytang\contact\models\Contact */
+/* @var $model modernkernel\contact\models\Contact */
 
 $this->title = Yii::t('contact', 'Contact Us');
 $this->params['breadcrumbs'][] = $this->title;
 
 // GMaps
 $map = false;
-$language=Yii::$app->language;
+$language = Yii::$app->language;
 if (!empty($settings['latLng'])) {
     $latLng = $settings['latLng'];
     $name = Yii::$app->name;
@@ -55,48 +54,45 @@ EOD;
 ?>
 
 <div class="contact-web-create" xmlns="http://www.w3.org/1999/html">
+    <div class="box box-info">
+        <div class="box-body">
+            <div class="row">
+                <?php if ($map): ?>
+                    <div class="col-md-7 hidden-xs hidden-sm">
+                        <div id="map-canvas" style="height: 100vh;">
+                        </div>
+                    </div>
+                <?php endif; ?>
+                <div class="col-xs-12 col-sm-12 col-md-<?= $map ? '5' : '12' ?>">
+                    <div itemscope itemtype="http://schema.org/Organization">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+                        <h2><span itemprop="name"><?= Yii::$app->name ?></span></h2>
 
-
-    <div>
-        <hr/>
-    </div>
-    <div class="row">
-        <?php if ($map): ?>
-            <div class="col-md-7 hidden-xs hidden-sm">
-                <div id="map-canvas" style="height: 100vh;">
-                </div>
-            </div>
-        <?php endif; ?>
-        <div class="col-xs-12 col-sm-12 col-md-<?= $map ? '5' : '12' ?>">
-            <div itemscope itemtype="http://schema.org/Organization">
-
-                <h2><span itemprop="name"><?= Yii::$app->name ?></span></h2>
-
-                <?php if (!empty($settings['address'])): ?>
-                    <p>
-                        <abbr title="<?= ContactModule::t('Address') ?>" class="glyphicon glyphicon-map-marker"></abbr>
-                    <span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                        <?php if (!empty($settings['address'])): ?>
+                            <p>
+                                <abbr title="<?= Yii::$app->getModule('contact')->t('Address') ?>" class="glyphicon glyphicon-map-marker"></abbr>
+                                <span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
                         <span itemprop="streetAddress"><?= $settings['address'] ?></span>,
                         <span itemprop="addressLocality"><?= $settings['city'] ?></span>,
                         <span itemprop="addressCountry"><?= $settings['country'] ?></span>
                     </span>
-                    </p>
-                <?php endif; ?>
+                            </p>
+                        <?php endif; ?>
 
-                <?php if (!empty($settings['phone'])): ?>
-                    <p><abbr title="<?= ContactModule::t('Phone') ?>" class="glyphicon glyphicon-phone-alt"></abbr>
-                        <span itemprop="telephone"><?= $settings['phone'] ?></span>
-                        <a href="tel:<?= $settings['phone'] ?>"
-                           class="btn btn-xs btn-primary hidden-sm hidden-md hidden-lg"><span
-                                class="glyphicon glyphicon-earphone"></span> <?= ContactModule::t('Call') ?></a>
-                    </p>
-                <?php endif; ?>
+                        <?php if (!empty($settings['phone'])): ?>
+                            <p><abbr title="<?= Yii::$app->getModule('contact')->t('Phone') ?>" class="glyphicon glyphicon-phone-alt"></abbr>
+                                <span itemprop="telephone"><?= $settings['phone'] ?></span>
+                                <a href="tel:<?= $settings['phone'] ?>"
+                                   class="btn btn-xs btn-primary hidden-sm hidden-md hidden-lg"><span
+                                        class="glyphicon glyphicon-earphone"></span> <?= Yii::$app->getModule('contact')->t('Call') ?></a>
+                            </p>
+                        <?php endif; ?>
+                    </div>
+                    <?= $this->render('_form', [
+                        'model' => $model,
+                    ]) ?>
+                </div>
             </div>
-            <?= $this->render('_form', [
-                'model' => $model,
-            ]) ?>
         </div>
     </div>
 </div>

@@ -1,24 +1,22 @@
 <?php
 
 /**
- * @author: Harry Tang (giaduy@gmail.com)
- * @link: http://www.greyneuron.com
- * @copyright: Grey Neuron
+ * @author Harry Tang <harry@modernkernel.com>
+ * @link https://modernkernel.com
+ * @copyright Copyright (c) 2016 Modern Kernel
  */
 
-use \harrytang\core\Core;
-use \harrytang\contact\ContactModule;
 
-if(!Yii::$app->user->can('staff')){
+use common\Core;
+
+if (!Yii::$app->user->can('staff')) {
     return [];
 }
 
 
-$json=json_encode(['label'=>Yii::$app->getModule('contact')->t('Contact'), 'icon'=>'fa fa-envelope']);
 return [
-    $json=>[
-        ['icon'=>'fa fa-circle-o', 'label' => Yii::$app->getModule('contact')->t('Manage'), 'url' => ['/contact/web/index'], 'active'=>Core::checkMCA('contact', 'web', ['index', 'view'])],
-        ['icon'=>'fa fa-circle-o', 'label' => Yii::$app->getModule('contact')->t('Settings'), 'url' => ['/contact/web/setting'], 'active'=>Core::checkMCA('contact', 'web', 'setting')],
-    ],
+    ['label' => Yii::$app->getModule('contact')->t('Web Contact')],
+    ['icon' => 'phone-square', 'label' => Yii::$app->getModule('contact')->t('Manage'), 'url' => ['/contact/web/index'], 'active' => Core::checkMCA('contact', 'web', ['index', 'view'])],
+    ['icon' => 'map', 'label' => Yii::$app->getModule('contact')->t('Settings'), 'url' => ['/contact/web/setting'], 'active' => Core::checkMCA('contact', 'web', 'setting')],
 ];
 

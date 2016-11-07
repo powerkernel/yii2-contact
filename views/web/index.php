@@ -30,7 +30,7 @@ $this->registerJs('$(document).on("pjax:send", function(){ $(".grid-view-overlay
                         ['attribute' => 'created_at', 'format' => 'dateTime'],
                         ['attribute' => 'status', 'value' => function ($model) {
                             return $model->statusText;
-                        }, 'filter' => \harrytang\contact\models\Contact::getStatusOption()],
+                        }, 'filter' => \modernkernel\contact\models\Contact::getStatusOption()],
                         [
                             'class' => 'yii\grid\ActionColumn',
                             'template' => '{view}{delete}'

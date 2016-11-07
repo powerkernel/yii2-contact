@@ -1,14 +1,14 @@
 <?php
 
-namespace harrytang\contact\models\search;
+namespace modernkernel\contact\models\search;
 
-use Yii;
+
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use harrytang\contact\models\Contact as ContactModel;
+use modernkernel\contact\models\Contact as ContactModel;
 
 /**
- * ContactWeb represents the model behind the search form about `harrytang\contact\models\ContactWeb`.
+ * ContactWeb represents the model behind the search form about `modernkernel\contact\models\ContactWeb`.
  */
 class Contact extends ContactModel
 {

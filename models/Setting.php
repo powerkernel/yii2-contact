@@ -1,8 +1,9 @@
 <?php
 
-namespace harrytang\contact\models;
+namespace modernkernel\contact\models;
 
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "{{%contact_setting}}".
@@ -10,7 +11,7 @@ use Yii;
  * @property string $key
  * @property string $value
  */
-class Setting extends \yii\db\ActiveRecord
+class Setting extends ActiveRecord
 {
     /**
      * @inheritdoc
@@ -42,6 +43,10 @@ class Setting extends \yii\db\ActiveRecord
         ];
     }
 
+    /**
+     * load as array
+     * @return array
+     */
     public static function loadAsArray(){
         $settings=self::find()->all();
         $a=[];

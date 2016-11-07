@@ -10,13 +10,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist harrytang/yii2-contact "*"
+php composer.phar require --prefer-dist modernkernel/yii2-contact "*"
 ```
 
 or add
 
 ```
-"harrytang/yii2-contact": "*"
+"modernkernel/yii2-contact": "*"
 ```
 
 to the require section of your `composer.json` file.
@@ -26,4 +26,4 @@ INSTALL
 -------
 
 ```
-yii migrate --migrationPath=@vendor/harrytang/yii2-contact/migrations/ --migrationTable={{%contact_migration}}
+yii migrate --migrationPath=@vendor/modernkernel/yii2-contact/migrations/ --migrationTable={{%contact_migration}}

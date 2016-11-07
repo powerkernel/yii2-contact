@@ -1,12 +1,11 @@
 <?php
 
-use harrytang\contact\ContactModule;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model harrytang\contact\models\Setting */
+/* @var $models[] modernkernel\contact\models\Setting */
 
 $this->title = Yii::t('contact', 'Settings');
 $this->params['breadcrumbs'][] = $this->title;
@@ -22,9 +21,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <?php foreach ($models as $model) : ?>
                 <div class="form-group">
-                    <label for="<?= $model->key ?>"><?= ContactModule::t(ucfirst($model->key)) ?></label>
+                    <label for="<?= $model->key ?>"><?= Yii::$app->getModule('contact')->t(ucfirst($model->key)) ?></label>
                     <input type="text" class="form-control" id="<?= $model->key ?>" name="<?= $model->key ?>"
-                           placeholder="<?= ContactModule::t(ucfirst($model->key)) ?>" value="<?= $model->value ?>"/>
+                           placeholder="<?= Yii::$app->getModule('contact')->t(ucfirst($model->key)) ?>" value="<?= $model->value ?>"/>
                 </div>
             <?php endforeach; ?>
 

@@ -1,8 +1,7 @@
 <?php
 
-namespace harrytang\contact\models;
+namespace modernkernel\contact\models;
 
-use harrytang\contact\ContactModule;
 use himiklab\yii2\recaptcha\ReCaptchaValidator;
 use Yii;
 use yii\behaviors\TimestampBehavior;
@@ -36,8 +35,8 @@ class Contact extends ActiveRecord
     public static function getStatusOption($e = null)
     {
         $option = [
-            self::STATUS_NEW => ContactModule::t('New'),
-            self::STATUS_DONE => ContactModule::t('Done'),
+            self::STATUS_NEW => Yii::$app->getModule('contact')->t('New'),
+            self::STATUS_DONE => Yii::$app->getModule('contact')->t('Done'),
         ];
         if (is_array($e))
             foreach ($e as $i)
@@ -56,13 +55,13 @@ class Contact extends ActiveRecord
             $status = $this->status;
         switch ($status) {
             case self::STATUS_NEW:
-                return ContactModule::t('New');
+                return Yii::$app->getModule('contact')->t('New');
                 break;
             case self::STATUS_DONE:
-                return ContactModule::t('Done');
+                return Yii::$app->getModule('contact')->t('Done');
                 break;
             default:
-                return ContactModule::t('Unknown');
+                return Yii::$app->getModule('contact')->t('Unknown');
                 break;
         }
     }
@@ -89,7 +88,7 @@ class Contact extends ActiveRecord
             //['verifyCode', 'captcha', 'captchaAction'=>'/site/captcha', 'on'=>['create']],
             //[['verifyCode'], ReCaptchaValidator::className(), 'on'=>['create']],
             [['verifyCode'], 'required', 'message'=> Yii::$app->getModule('contact')->t('Prove you are NOT a robot'), 'on'=>['create']],
-            [['verifyCode'], ReCaptchaValidator::className(), 'message'=> Yii::$app->getModule('contact')->t('Prove you are NOT a robot')]
+            [['verifyCode'], ReCaptchaValidator::className(), 'message'=> Yii::$app->getModule('contact')->t('Prove you are NOT a robot'), 'on'=>['create']]
         ];
     }
 

@@ -1,12 +1,11 @@
 <?php
 
-namespace harrytang\contact\controllers;
+namespace modernkernel\contact\controllers;
 
-use harrytang\contact\ContactModule;
-use harrytang\contact\models\Setting;
+use modernkernel\contact\models\Setting;
 use Yii;
-use harrytang\contact\models\Contact;
-use harrytang\contact\models\search\Contact as ContactSearch;
+use modernkernel\contact\models\Contact;
+use modernkernel\contact\models\search\Contact as ContactSearch;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -54,7 +53,7 @@ class WebController extends Controller
      */
     public function actionIndex()
     {
-        $this->layout = '@harrytang/core/layouts/adminlte.php';
+        $this->layout = Yii::$app->view->theme->basePath.'/admin.php';
         $searchModel = new ContactSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -71,7 +70,7 @@ class WebController extends Controller
      */
     public function actionSetting()
     {
-        $this->layout = '@harrytang/core/layouts/adminlte.php';
+        $this->layout = Yii::$app->view->theme->basePath.'/admin.php';
         $models = Setting::find()->all();
 
         if (Yii::$app->request->isPost) {
@@ -101,7 +100,7 @@ class WebController extends Controller
      */
     public function actionView($id)
     {
-        $this->layout = '@harrytang/core/layouts/adminlte.php';
+        $this->layout = Yii::$app->view->theme->basePath.'/admin.php';
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -120,18 +119,18 @@ class WebController extends Controller
 
         $model->setScenario('create');
         if (!Yii::$app->user->isGuest) {
-            $model->name = Yii::$app->user->identity->username;
+            $model->name = Yii::$app->user->identity->fullname;
             $model->email = Yii::$app->user->identity->email;
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success', ContactModule::t('Thank you for contacting us. We will respond to you as soon as possible.'));
+            Yii::$app->session->setFlash('success', Yii::$app->getModule('contact')->t('Thank you for contacting us. We will respond to you as soon as possible.'));
 
             // send mail
             Yii::$app->mailer->compose('newContact', ['model' => $model])
-                ->setFrom([Yii::$app->params['settings']['supportEmail'] => Yii::$app->name])
+                ->setFrom([\common\models\Setting::getValue('outgoingMail') => Yii::$app->name])
                 ->setTo($model->email)
-                ->setSubject(ContactModule::t('{USER} have contacted you.', ['USER' => $model->name]))
+                ->setSubject(Yii::$app->getModule('contact')->t('{USER} have contacted you.', ['USER' => $model->name]))
                 ->send();
 
             return $this->refresh();

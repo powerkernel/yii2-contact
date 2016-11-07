@@ -1,8 +1,8 @@
 <?php
 /**
- * @author: Harry Tang (giaduy@gmail.com)
- * @link: http://www.greyneuron.com
- * @copyright: Grey Neuron
+ * @author Harry Tang <harry@modernkernel.com>
+ * @link https://modernkernel.com
+ * @copyright Copyright (c) 2016 Modern Kernel
  */
 
 return [

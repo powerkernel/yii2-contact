@@ -1,10 +1,15 @@
 <?php
 
-use yii\db\Schema;
 use yii\db\Migration;
 
+/**
+ * Class m141213_141621_init
+ */
 class m141213_141621_init extends Migration
 {
+    /**
+     * @inheritdoc
+     */
     public function up()
     {
         $tableOptions = null;
@@ -14,18 +19,21 @@ class m141213_141621_init extends Migration
         }
 
         $this->createTable('{{%contact_data}}', [
-            'id' => Schema::TYPE_PK,
-            'name' => Schema::TYPE_STRING . ' NOT NULL',
-            'email' => Schema::TYPE_STRING . ' NOT NULL',
-            'subject' => Schema::TYPE_STRING . ' NOT NULL',
-            'content' => Schema::TYPE_TEXT. ' NOT NULL',
-            'status' => Schema::TYPE_SMALLINT . ' NOT NULL DEFAULT 10',
-            'created_at' => Schema::TYPE_INTEGER . ' NOT NULL',
-            'updated_at' => Schema::TYPE_INTEGER . ' NOT NULL',
+            'id' => $this->primaryKey(),
+            'name' => $this->string()->notNull(),
+            'email' => $this->string()->notNull(),
+            'subject' => $this->string()->notNull(),
+            'content' => $this->text()->notNull(),
+            'status' => $this->smallInteger()->notNull()->defaultValue(10),
+            'created_at' => $this->integer()->notNull(),
+            'updated_at' => $this->integer()->notNull(),
         ], $tableOptions);
 
     }
 
+    /**
+     * @inheritdoc
+     */
     public function down()
     {
         $this->dropTable('{{%contact_data}}');

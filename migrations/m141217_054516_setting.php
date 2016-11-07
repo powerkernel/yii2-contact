@@ -1,10 +1,15 @@
 <?php
 
-use yii\db\Schema;
 use yii\db\Migration;
 
+/**
+ * Class m141217_054516_setting
+ */
 class m141217_054516_setting extends Migration
 {
+    /**
+     * @inheritdoc
+     */
     public function up()
     {
         $tableOptions = null;
@@ -14,18 +19,21 @@ class m141217_054516_setting extends Migration
         }
 
         $this->createTable('{{%contact_setting}}', [
-            'key' => Schema::TYPE_STRING . ' NOT NULL',
-            'value' => Schema::TYPE_STRING . ' NULL DEFAULT NULL',
+            'key' => $this->string()->notNull(),
+            'value' => $this->string()->null(),
         ], $tableOptions);
 
         $this->addPrimaryKey('pk', '{{%contact_setting}}', 'key');
-        $this->insert('{{%contact_setting}}', ['key'=>'address', 'value'=>'address']);
-        $this->insert('{{%contact_setting}}', ['key'=>'city', 'value'=>'city']);
-        $this->insert('{{%contact_setting}}', ['key'=>'country', 'value'=>'country']);
-        $this->insert('{{%contact_setting}}', ['key'=>'phone', 'value'=>'phone']);
-        $this->insert('{{%contact_setting}}', ['key'=>'latLng', 'value'=>'latLng']);
+        $this->insert('{{%contact_setting}}', ['key' => 'address', 'value' => 'address']);
+        $this->insert('{{%contact_setting}}', ['key' => 'city', 'value' => 'city']);
+        $this->insert('{{%contact_setting}}', ['key' => 'country', 'value' => 'country']);
+        $this->insert('{{%contact_setting}}', ['key' => 'phone', 'value' => 'phone']);
+        $this->insert('{{%contact_setting}}', ['key' => 'latLng', 'value' => 'latLng']);
     }
 
+    /**
+     * @inheritdoc
+     */
     public function down()
     {
         $this->dropTable('{{%contact_setting}}');
