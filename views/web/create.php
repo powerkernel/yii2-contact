@@ -1,7 +1,5 @@
 <?php
 
-use yii\helpers\Html;
-
 /* @var $this yii\web\View */
 /* @var $model modernkernel\contact\models\Contact */
 
@@ -65,20 +63,17 @@ EOD;
                 <?php endif; ?>
                 <div class="col-xs-12 col-sm-12 col-md-<?= $map ? '5' : '12' ?>">
                     <div itemscope itemtype="http://schema.org/Organization">
-
                         <h2><span itemprop="name"><?= Yii::$app->name ?></span></h2>
-
                         <?php if (!empty($settings['address'])): ?>
                             <p>
                                 <abbr title="<?= Yii::$app->getModule('contact')->t('Address') ?>" class="glyphicon glyphicon-map-marker"></abbr>
                                 <span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-                        <span itemprop="streetAddress"><?= $settings['address'] ?></span>,
-                        <span itemprop="addressLocality"><?= $settings['city'] ?></span>,
-                        <span itemprop="addressCountry"><?= $settings['country'] ?></span>
-                    </span>
+                                    <span itemprop="streetAddress"><?= $settings['address'] ?></span>,
+                                    <span itemprop="addressLocality"><?= $settings['city'] ?></span>,
+                                    <span itemprop="addressCountry"><?= $settings['country'] ?></span>
+                                </span>
                             </p>
                         <?php endif; ?>
-
                         <?php if (!empty($settings['phone'])): ?>
                             <p><abbr title="<?= Yii::$app->getModule('contact')->t('Phone') ?>" class="glyphicon glyphicon-phone-alt"></abbr>
                                 <span itemprop="telephone"><?= $settings['phone'] ?></span>
