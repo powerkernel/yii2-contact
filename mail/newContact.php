@@ -15,6 +15,3 @@ use \yii\helpers\Html;
 
 <p><?= $model->subject ?></p>
 <p><?= nl2br(Html::encode($model->content)) ?></p>
-
-<?= Yii::$app->getModule('contact')->t('Sincerely,') ?><br/>
-<?= Html::encode(\Yii::$app->name) ?>
