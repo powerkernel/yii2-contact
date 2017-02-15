@@ -108,14 +108,14 @@ class Contact extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('contact', 'ID'),
-            'name' => Yii::t('contact', 'Name'),
-            'email' => Yii::t('contact', 'Email'),
-            'subject' => Yii::t('contact', 'Subject'),
-            'content' => Yii::t('contact', 'Content'),
-            'status' => Yii::t('contact', 'Status'),
-            'created_at' => Yii::t('contact', 'Created At'),
-            'updated_at' => Yii::t('contact', 'Updated At'),
+            'id' => Yii::$app->getModule('contact')->t('ID'),
+            'name' => Yii::$app->getModule('contact')->t('Name'),
+            'email' => Yii::$app->getModule('contact')->t('Email'),
+            'subject' => Yii::$app->getModule('contact')->t('Subject'),
+            'content' => Yii::$app->getModule('contact')->t('Content'),
+            'status' => Yii::$app->getModule('contact')->t('Status'),
+            'created_at' => Yii::$app->getModule('contact')->t('Created At'),
+            'updated_at' => Yii::$app->getModule('contact')->t('Updated At'),
         ];
     }
 
