@@ -1,6 +1,7 @@
 <?php
 
 use yii\grid\GridView;
+use yii\jui\DatePicker;
 use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
@@ -27,7 +28,13 @@ $this->registerJs('$(document).on("pjax:send", function(){ $(".grid-view-overlay
                         'name',
                         'email:email',
                         'subject',
-                        ['attribute' => 'created_at', 'format' => 'dateTime'],
+                        [
+                            'attribute' => 'created_at',
+                            'value' => 'created_at',
+                            'format' => 'dateTime',
+                            'filter' => DatePicker::widget(['model' => $searchModel, 'attribute' => 'created_at', 'dateFormat' => 'yyyy-MM-dd', 'options' => ['class' => 'form-control']]),
+                            'contentOptions'=>['style'=>'min-width: 80px']
+                        ],
                         ['attribute' => 'status', 'value' => function ($model) {
                             return $model->statusText;
                         }, 'filter' => \modernkernel\contact\models\Contact::getStatusOption()],

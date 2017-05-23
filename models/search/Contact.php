@@ -18,8 +18,8 @@ class Contact extends ContactModel
     public function rules()
     {
         return [
-            [['id', 'status', 'created_at', 'updated_at'], 'integer'],
-            [['name', 'email', 'subject', 'content'], 'safe'],
+            [['id', 'status', 'updated_at'], 'integer'],
+            [['name', 'email', 'subject', 'content', 'created_at'], 'safe'],
         ];
     }
 
@@ -55,7 +55,7 @@ class Contact extends ContactModel
         $query->andFilterWhere([
             'id' => $this->id,
             'status' => $this->status,
-            'created_at' => $this->created_at,
+            //'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);
 
@@ -63,6 +63,15 @@ class Contact extends ContactModel
             ->andFilterWhere(['like', 'email', $this->email])
             ->andFilterWhere(['like', 'subject', $this->subject])
             ->andFilterWhere(['like', 'content', $this->content]);
+
+        if(!empty($this->created_at)){
+            $query->andFilterWhere([
+                'DATE(CONVERT_TZ(FROM_UNIXTIME(`created_at`), :UTC, :ATZ))' => $this->created_at,
+            ])->params([
+                ':UTC'=>'+00:00',
+                ':ATZ'=>date('P')
+            ]);
+        }
 
         return $dataProvider;
     }
