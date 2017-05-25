@@ -36,8 +36,8 @@ $this->registerJs('$(document).on("pjax:send", function(){ $(".grid-view-overlay
                             'contentOptions'=>['style'=>'min-width: 80px']
                         ],
                         ['attribute' => 'status', 'value' => function ($model) {
-                            return $model->statusText;
-                        }, 'filter' => \modernkernel\contact\models\Contact::getStatusOption()],
+                            return $model->statusColorText;
+                        }, 'filter' => \modernkernel\contact\models\Contact::getStatusOption(), 'format'=>'raw'],
                         [
                             'class' => 'yii\grid\ActionColumn',
                             'template' => '{view}{delete}'

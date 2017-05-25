@@ -67,6 +67,22 @@ class Contact extends ActiveRecord
     }
 
     /**
+     * color status text
+     * @return mixed|string
+     */
+    public function getStatusColorText()
+    {
+        $status = $this->status;
+        if ($status == self::STATUS_NEW) {
+            return '<span class="label label-primary">' . $this->statusText . '</span>';
+        }
+        if ($status == self::STATUS_DONE) {
+            return '<span class="label label-success">' . $this->statusText . '</span>';
+        }
+        return $this->statusText;
+    }
+
+    /**
      * @inheritdoc
      */
     public static function tableName()
