@@ -5,7 +5,7 @@ use yii\jui\DatePicker;
 use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
-/* @var $searchModel harrytang\contact\models\search\Contact */
+/* @var $searchModel modernkernel\contact\models\search\Contact */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('contact', 'Contact');
@@ -23,14 +23,14 @@ $this->registerJs('$(document).on("pjax:send", function(){ $(".grid-view-overlay
                     'dataProvider' => $dataProvider,
                     'filterModel' => $searchModel,
                     'columns' => [
-                        //['class' => 'yii\grid\SerialColumn'],
-                        'id',
+                        ['class' => 'yii\grid\SerialColumn'],
+                        //'id',
                         'name',
                         'email:email',
                         'subject',
                         [
                             'attribute' => 'created_at',
-                            'value' => 'created_at',
+                            'value' => 'createdAt',
                             'format' => 'dateTime',
                             'filter' => DatePicker::widget(['model' => $searchModel, 'attribute' => 'created_at', 'dateFormat' => 'yyyy-MM-dd', 'options' => ['class' => 'form-control']]),
                             'contentOptions'=>['style'=>'min-width: 80px']

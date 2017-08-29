@@ -3,24 +3,15 @@
 namespace modernkernel\contact\models;
 
 use Yii;
-use yii\db\ActiveRecord;
 
 /**
- * This is the model class for table "{{%contact_setting}}".
+ * This is the model class for Setting.
  *
  * @property string $key
  * @property string $value
  */
-class Setting extends ActiveRecord
+class Setting extends SettingBase
 {
-    /**
-     * @inheritdoc
-     */
-    public static function tableName()
-    {
-        return '{{%contact_setting}}';
-    }
-
     /**
      * @inheritdoc
      */

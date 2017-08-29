@@ -4,22 +4,20 @@ namespace modernkernel\contact\models;
 
 use himiklab\yii2\recaptcha\ReCaptchaValidator;
 use Yii;
-use yii\behaviors\TimestampBehavior;
-use yii\db\ActiveRecord;
 
 /**
- * This is the model class for table "{{%contact_web}}".
+ * This is the model class for Contact.
  *
- * @property integer $id
+ * @property integer|\MongoDB\BSON\ObjectID|string $id
  * @property string $name
  * @property string $email
  * @property string $subject
  * @property string $content
  * @property integer $status
- * @property integer $created_at
- * @property integer $updated_at
+ * @property integer|\MongoDB\BSON\UTCDateTime $created_at
+ * @property integer|\MongoDB\BSON\UTCDateTime $updated_at
  */
-class Contact extends ActiveRecord
+class Contact extends ContactBase
 {
     const STATUS_NEW = 10;
     const STATUS_DONE = 20;
@@ -85,38 +83,19 @@ class Contact extends ActiveRecord
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
-        return '{{%contact_data}}';
-    }
-
-    /**
-     * @inheritdoc
-     */
     public function rules()
     {
         return [
             [['name', 'email', 'subject', 'content'], 'required'],
             [['content'], 'string'],
-            [['status', 'created_at', 'updated_at'], 'integer'],
+            [['status'], 'integer'],
             [['name', 'email', 'subject'], 'string', 'max' => 255],
-
-            //['verifyCode', 'captcha', 'captchaAction'=>'/site/captcha', 'on'=>['create']],
-            //[['verifyCode'], ReCaptchaValidator::className(), 'on'=>['create']],
             [['verifyCode'], 'required', 'message'=> Yii::$app->getModule('contact')->t('Prove you are NOT a robot'), 'on'=>['create']],
             [['verifyCode'], ReCaptchaValidator::className(), 'message'=> Yii::$app->getModule('contact')->t('Prove you are NOT a robot'), 'on'=>['create']]
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            TimestampBehavior::className(),
-        ];
-    }
+
 
     /**
      * @inheritdoc
@@ -124,7 +103,7 @@ class Contact extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::$app->getModule('contact')->t('ID'),
+            //'id' => Yii::$app->getModule('contact')->t('ID'),
             'name' => Yii::$app->getModule('contact')->t('Name'),
             'email' => Yii::$app->getModule('contact')->t('Email'),
             'subject' => Yii::$app->getModule('contact')->t('Subject'),

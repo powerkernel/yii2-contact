@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 href="mailto:<?= Html::encode($model->email) ?>"><?= Html::encode($model->email) ?></a>)
         </div>
         <div>
-            <?= Yii::$app->formatter->format($model->created_at, 'datetime') ?>
+            <?= Yii::$app->formatter->format($model->createdAt, 'datetime') ?>
         </div>
 
     </div>
@@ -40,9 +40,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a(Yii::t('contact', 'Reply'), 'mailto:' . Html::encode($model->email), ['class' => 'btn btn-primary']) ?>
         <?php if($model->status!=\modernkernel\contact\models\Contact::STATUS_DONE):?>
-        <?= Html::a(Yii::t('contact', 'Make Done'), ['done', 'id' => $model->id], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('contact', 'Make Done'), ['done', 'id' => is_a($model, '\yii\mongodb\ActiveRecord')?(string)$model->_id:$model->id], ['class' => 'btn btn-success']) ?>
         <?php endif;?>
-        <?= Html::a(Yii::t('contact', 'Delete'), ['delete', 'id' => $model->id], [
+        <?= Html::a(Yii::t('contact', 'Delete'), ['delete', 'id' => is_a($model, '\yii\mongodb\ActiveRecord')?(string)$model->_id:$model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => Yii::t('contact', 'Are you sure you want to delete this item?'),

@@ -3,6 +3,7 @@
 namespace modernkernel\contact\models\search;
 
 
+use MongoDB\BSON\UTCDateTime;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use modernkernel\contact\models\Contact as ContactModel;
@@ -18,7 +19,7 @@ class Contact extends ContactModel
     public function rules()
     {
         return [
-            [['id', 'status', 'updated_at'], 'integer'],
+            [['status'], 'integer'],
             [['name', 'email', 'subject', 'content', 'created_at'], 'safe'],
         ];
     }
@@ -45,7 +46,7 @@ class Contact extends ContactModel
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort' => ['defaultOrder'=>['id'=>SORT_DESC]]
+            'sort' => ['defaultOrder'=>['created_at'=>SORT_DESC]]
         ]);
 
         if (!($this->load($params) && $this->validate())) {
@@ -53,10 +54,10 @@ class Contact extends ContactModel
         }
 
         $query->andFilterWhere([
-            'id' => $this->id,
+            //'id' => $this->id,
             'status' => $this->status,
             //'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            //'updated_at' => $this->updated_at,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
@@ -65,12 +66,22 @@ class Contact extends ContactModel
             ->andFilterWhere(['like', 'content', $this->content]);
 
         if(!empty($this->created_at)){
-            $query->andFilterWhere([
-                'DATE(CONVERT_TZ(FROM_UNIXTIME(`created_at`), :UTC, :ATZ))' => $this->created_at,
-            ])->params([
-                ':UTC'=>'+00:00',
-                ':ATZ'=>date('P')
-            ]);
+            if (is_a($this, '\yii\db\ActiveRecord')) {
+                $query->andFilterWhere([
+                    'DATE(CONVERT_TZ(FROM_UNIXTIME(`created_at`), :UTC, :ATZ))' => $this->created_at,
+                ])->params([
+                    ':UTC'=>'+00:00',
+                    ':ATZ'=>date('P')
+                ]);
+            }
+            else {
+                $query->andFilterWhere([
+                    'created_at' => ['$gte'=>new UTCDateTime(strtotime($this->created_at)*1000)],
+                ])->andFilterWhere([
+                    'created_at' => ['$lt'=>new UTCDateTime((strtotime($this->created_at)+86400)*1000)],
+                ]);
+            }
+
         }
 
         return $dataProvider;
