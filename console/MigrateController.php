@@ -20,6 +20,7 @@ class MigrateController extends \yii\console\Controller
         // data
         $rows = (new Query())->select('*')->from('{{%contact_data}}')->all();
         $collection = \Yii::$app->mongodb->getCollection('contact_data');
+        $collection->remove();
         foreach ($rows as $row) {
             $collection->insert([
                 'name' => $row['name'],
@@ -34,6 +35,7 @@ class MigrateController extends \yii\console\Controller
         // settings
         $rows = (new Query())->select('*')->from('{{%contact_setting}}')->all();
         $collection = \Yii::$app->mongodb->getCollection('contact_settings');
+        $collection->remove();
         foreach ($rows as $row) {
             $collection->insert([
                 'key' => $row['key'],
