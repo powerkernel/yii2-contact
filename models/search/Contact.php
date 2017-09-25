@@ -19,7 +19,7 @@ class Contact extends ContactModel
     public function rules()
     {
         return [
-            [['status'], 'integer'],
+            [['status'], 'string'],
             [['name', 'email', 'subject', 'content', 'created_at'], 'safe'],
         ];
     }
@@ -53,17 +53,12 @@ class Contact extends ContactModel
             return $dataProvider;
         }
 
-        $query->andFilterWhere([
-            //'id' => $this->id,
-            'status' => $this->status,
-            //'created_at' => $this->created_at,
-            //'updated_at' => $this->updated_at,
-        ]);
+
 
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'email', $this->email])
             ->andFilterWhere(['like', 'subject', $this->subject])
-            ->andFilterWhere(['like', 'content', $this->content]);
+            ->andFilterWhere(['status', 'content', $this->status]);
 
         if(!empty($this->created_at)){
             if (is_a($this, '\yii\db\ActiveRecord')) {

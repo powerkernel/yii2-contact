@@ -13,14 +13,14 @@ use Yii;
  * @property string $email
  * @property string $subject
  * @property string $content
- * @property integer $status
+ * @property string $status
  * @property integer|\MongoDB\BSON\UTCDateTime $created_at
  * @property integer|\MongoDB\BSON\UTCDateTime $updated_at
  */
 class Contact extends ContactBase
 {
-    const STATUS_NEW = 10;
-    const STATUS_DONE = 20;
+    const STATUS_NEW = 'STATUS_NEW';
+    const STATUS_DONE = 'STATUS_DONE';
 
     public $verifyCode;
 
@@ -87,9 +87,11 @@ class Contact extends ContactBase
     {
         return [
             [['name', 'email', 'subject', 'content'], 'required'],
-            [['content'], 'string'],
-            [['status'], 'integer'],
+
+            [['content', 'status'], 'string'],
             [['name', 'email', 'subject'], 'string', 'max' => 255],
+            [['email'], 'email'],
+            
             [['verifyCode'], 'required', 'message'=> Yii::$app->getModule('contact')->t('Prove you are NOT a robot'), 'on'=>['create']],
             [['verifyCode'], ReCaptchaValidator::className(), 'message'=> Yii::$app->getModule('contact')->t('Prove you are NOT a robot'), 'on'=>['create']]
         ];
