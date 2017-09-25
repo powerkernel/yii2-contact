@@ -17,6 +17,11 @@ class m170907_102035_setting extends \yii\mongodb\Migration
                 'unique'=>true,
             ]
         ]);
+        $this->insert('contact_settings', ['key' => 'address', 'value' => 'address']);
+        $this->insert('contact_settings', ['key' => 'city', 'value' => 'city']);
+        $this->insert('contact_settings', ['key' => 'country', 'value' => 'country']);
+        $this->insert('contact_settings', ['key' => 'phone', 'value' => 'phone']);
+        $this->insert('contact_settings', ['key' => 'latLng', 'value' => 'latLng']);
     }
 
     /**
