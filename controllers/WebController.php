@@ -129,7 +129,7 @@ class WebController extends Controller
             // send mail
             Yii::$app->mailer->compose('newContact', ['model' => $model])
                 ->setFrom([\common\models\Setting::getValue('outgoingMail') => Yii::$app->name])
-                ->setTo($model->email)
+                ->setTo(\common\models\Setting::getValue('adminMail'))
                 ->setSubject(Yii::$app->getModule('contact')->t('{USER} have contacted you.', ['USER' => $model->name]))
                 ->send();
 
