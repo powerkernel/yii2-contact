@@ -7,6 +7,9 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model modernkernel\contact\models\Contact */
 /* @var $form yii\widgets\ActiveForm */
+
+$js = file_get_contents(__DIR__ . '/form.min.js');
+$this->registerJs($js);
 ?>
 
 <div class="contact-form">
@@ -17,7 +20,7 @@ use yii\widgets\ActiveForm;
     <div class="row">
         <div class="col-xs-12">
 
-            <?php $form = ActiveForm::begin(); ?>
+            <?php $form = ActiveForm::begin(['options' => ['class' => 'pds']]); ?>
 
             <?= $form->field($model, 'name')->textInput(['maxlength' => 255]) ?>
 
@@ -30,7 +33,12 @@ use yii\widgets\ActiveForm;
             <?= $form->field($model, 'verifyCode')->widget(ReCaptcha::className())->label(false) ?>
 
             <div class="form-group">
-                <?= Html::submitButton(Yii::t('contact', 'Submit'), ['class' => 'btn btn-primary']) ?>
+                <?=
+                Html::submitButton(
+                    \modernkernel\fontawesome\Icon::widget(['icon'=>'refresh fa-spin hidden']).'<span>'.Yii::t('contact', 'Submit').'</span>',
+                    ['class' => 'btn btn-primary']
+                )
+                ?>
             </div>
 
             <?php ActiveForm::end(); ?>
