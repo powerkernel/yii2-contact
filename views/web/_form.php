@@ -8,8 +8,6 @@ use yii\widgets\ActiveForm;
 /* @var $model modernkernel\contact\models\Contact */
 /* @var $form yii\widgets\ActiveForm */
 
-$js = file_get_contents(__DIR__ . '/form.min.js');
-$this->registerJs($js);
 ?>
 
 <div class="contact-form">
@@ -33,12 +31,7 @@ $this->registerJs($js);
             <?= $form->field($model, 'verifyCode')->widget(ReCaptcha::className())->label(false) ?>
 
             <div class="form-group">
-                <?=
-                Html::submitButton(
-                    \modernkernel\fontawesome\Icon::widget(['icon'=>'refresh fa-spin hidden']).'<span>'.Yii::t('contact', 'Submit').'</span>',
-                    ['class' => 'btn btn-primary']
-                )
-                ?>
+                <?= \common\components\SubmitButton::widget(['text'=>Yii::t('contact', 'Submit'), 'options'=>['class' => 'btn btn-primary']]) ?>
             </div>
 
             <?php ActiveForm::end(); ?>
