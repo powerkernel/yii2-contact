@@ -1,8 +1,6 @@
 <?php
 
 use yii\bootstrap\ActiveForm;
-use yii\helpers\Html;
-
 
 /* @var $this yii\web\View */
 /* @var $models[] modernkernel\contact\models\Setting */
@@ -28,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php endforeach; ?>
 
             <div class="form-group">
-                <?= Html::submitButton(Yii::t('contact', 'Save'), ['class' => 'btn btn-primary']) ?>
+                <?= \common\components\SubmitButton::widget(['text'=>Yii::t('contact', 'Save'), 'options'=>['class' => 'btn btn-primary']]) ?>
             </div>
 
             <?php $form = ActiveForm::end(); ?>
