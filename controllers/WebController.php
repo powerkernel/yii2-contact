@@ -2,19 +2,19 @@
 
 namespace modernkernel\contact\controllers;
 
+use common\components\MainController;
 use modernkernel\contact\models\Setting;
 use Yii;
 use modernkernel\contact\models\Contact;
 use modernkernel\contact\models\search\Contact as ContactSearch;
 use yii\filters\AccessControl;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
  * WebController implements the CRUD actions for Contact model.
  */
-class WebController extends Controller
+class WebController extends MainController
 {
     public $defaultAction = 'create';
 
