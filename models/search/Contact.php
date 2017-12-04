@@ -1,15 +1,15 @@
 <?php
 
-namespace modernkernel\contact\models\search;
+namespace powerkernel\contact\models\search;
 
 
 use MongoDB\BSON\UTCDateTime;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use modernkernel\contact\models\Contact as ContactModel;
+use powerkernel\contact\models\Contact as ContactModel;
 
 /**
- * ContactWeb represents the model behind the search form about `modernkernel\contact\models\ContactWeb`.
+ * ContactWeb represents the model behind the search form about `powerkernel\contact\models\ContactWeb`.
  */
 class Contact extends ContactModel
 {

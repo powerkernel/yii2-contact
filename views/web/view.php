@@ -4,7 +4,7 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model modernkernel\contact\models\Contact */
+/* @var $model powerkernel\contact\models\Contact */
 
 $this->title = $model->subject;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('contact', 'Contact'), 'url' => ['index']];
@@ -39,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a(Yii::t('contact', 'Reply'), 'mailto:' . Html::encode($model->email), ['class' => 'btn btn-primary']) ?>
-        <?php if($model->status!=\modernkernel\contact\models\Contact::STATUS_DONE):?>
+        <?php if($model->status!=\powerkernel\contact\models\Contact::STATUS_DONE):?>
         <?= Html::a(Yii::t('contact', 'Make Done'), ['done', 'id' => is_a($model, '\yii\mongodb\ActiveRecord')?(string)$model->_id:$model->id], ['class' => 'btn btn-success']) ?>
         <?php endif;?>
         <?= Html::a(Yii::t('contact', 'Delete'), ['delete', 'id' => is_a($model, '\yii\mongodb\ActiveRecord')?(string)$model->_id:$model->id], [

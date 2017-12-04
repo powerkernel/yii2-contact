@@ -3,7 +3,7 @@
 use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $models[] modernkernel\contact\models\Setting */
+/* @var $models[] powerkernel\contact\models\Setting */
 
 $this->title = Yii::t('contact', 'Settings');
 $this->params['breadcrumbs'][] = $this->title;

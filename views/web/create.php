@@ -1,7 +1,7 @@
 <?php
 
 /* @var $this yii\web\View */
-/* @var $model modernkernel\contact\models\Contact */
+/* @var $model powerkernel\contact\models\Contact */
 
 $this->title = Yii::t('contact', 'Contact Us');
 $this->params['breadcrumbs'][] = $this->title;

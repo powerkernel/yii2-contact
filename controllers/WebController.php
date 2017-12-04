@@ -1,12 +1,12 @@
 <?php
 
-namespace modernkernel\contact\controllers;
+namespace powerkernel\contact\controllers;
 
 use common\components\MainController;
-use modernkernel\contact\models\Setting;
+use powerkernel\contact\models\Setting;
 use Yii;
-use modernkernel\contact\models\Contact;
-use modernkernel\contact\models\search\Contact as ContactSearch;
+use powerkernel\contact\models\Contact;
+use powerkernel\contact\models\search\Contact as ContactSearch;
 use yii\filters\AccessControl;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;

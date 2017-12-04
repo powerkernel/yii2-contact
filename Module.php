@@ -1,15 +1,15 @@
 <?php
 
-namespace modernkernel\contact;
+namespace powerkernel\contact;
 use Yii;
 
 /**
  * Class Module
- * @package modernkernel\contact
+ * @package powerkernel\contact
  */
 class Module extends \yii\base\Module
 {
-    public $controllerNamespace = 'modernkernel\contact\controllers';
+    public $controllerNamespace = 'powerkernel\contact\controllers';
     public $defaultRoute = 'web';
 
     /**

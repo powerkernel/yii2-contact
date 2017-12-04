@@ -6,15 +6,15 @@
  */
 
 
-namespace modernkernel\contact\widgets;
+namespace powerkernel\contact\widgets;
 
 
-use modernkernel\contact\models\Setting;
+use powerkernel\contact\models\Setting;
 use yii\base\Widget;
 
 /**
  * Class Info
- * @package modernkernel\contact\widgets
+ * @package powerkernel\contact\widgets
  */
 class Info extends Widget
 {

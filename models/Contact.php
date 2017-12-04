@@ -1,6 +1,6 @@
 <?php
 
-namespace modernkernel\contact\models;
+namespace powerkernel\contact\models;
 
 use himiklab\yii2\recaptcha\ReCaptchaValidator;
 use Yii;

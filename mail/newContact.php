@@ -2,7 +2,7 @@
 
 use \yii\helpers\Html;
 
-/* @var $model \modernkernel\contact\models\Contact */
+/* @var $model \powerkernel\contact\models\Contact */
 
 ?>
 <p><?= Yii::$app->getModule('contact')->t('Hello Admin,') ?></p>

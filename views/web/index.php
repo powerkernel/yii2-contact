@@ -5,7 +5,7 @@ use yii\jui\DatePicker;
 use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
-/* @var $searchModel modernkernel\contact\models\search\Contact */
+/* @var $searchModel powerkernel\contact\models\search\Contact */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('contact', 'Contact');
@@ -37,7 +37,7 @@ $this->registerJs('$(document).on("pjax:send", function(){ $(".grid-view-overlay
                         ],
                         ['attribute' => 'status', 'value' => function ($model) {
                             return $model->statusColorText;
-                        }, 'filter' => \modernkernel\contact\models\Contact::getStatusOption(), 'format'=>'raw'],
+                        }, 'filter' => \powerkernel\contact\models\Contact::getStatusOption(), 'format'=>'raw'],
                         [
                             'class' => 'yii\grid\ActionColumn',
                             'template' => '{view}{delete}'
