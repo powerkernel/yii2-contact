@@ -50,7 +50,7 @@ $this->registerJs('$(document).on("pjax:send", function(){ $(".grid-view-overlay
         </div>
         <!-- Loading (remove the following to stop the loading)-->
         <div class="overlay grid-view-overlay hidden">
-            <i class="fa fa-refresh fa-spin"></i>
+            <?= \powerkernel\fontawesome\Icon::widget(['name'=>'sync', 'styling'=>'fa-spin']) ?>
         </div>
         <!-- end loading -->
     </div>

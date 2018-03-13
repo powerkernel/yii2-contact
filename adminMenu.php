@@ -19,8 +19,8 @@ $menu=[
     'title'=>Yii::$app->getModule('contact')->t('Web Contact'),
     'icon'=> 'phone-square',
     'items'=>[
-        ['icon' => 'envelope-o', 'label' => Yii::$app->getModule('contact')->t('Manage'), 'url' => ['/contact/web/index'], 'active' => Core::checkMCA('contact', 'web', ['index', 'view'])],
-        ['icon' => 'gears', 'label' => Yii::$app->getModule('contact')->t('Settings'), 'url' => ['/contact/web/setting'], 'active' => Core::checkMCA('contact', 'web', 'setting')],    ],
+        ['icon' => 'envelope', 'label' => Yii::$app->getModule('contact')->t('Manage'), 'url' => ['/contact/web/index'], 'active' => Core::checkMCA('contact', 'web', ['index', 'view'])],
+        ['icon' => 'cogs', 'label' => Yii::$app->getModule('contact')->t('Settings'), 'url' => ['/contact/web/setting'], 'active' => Core::checkMCA('contact', 'web', 'setting')],    ],
 ];
 $menu['active']=SideMenu::isActive($menu['items']);
 return [$menu];
