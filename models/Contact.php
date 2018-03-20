@@ -93,7 +93,7 @@ class Contact extends ContactBase
             [['email'], 'email'],
 
             [['verifyCode'], 'required', 'message'=> Yii::$app->getModule('contact')->t('Prove you are NOT a robot'), 'on'=>['create']],
-            [['verifyCode'], ReCaptchaValidator::className(), 'message'=> Yii::$app->getModule('contact')->t('Prove you are NOT a robot'), 'on'=>['create']]
+            [['verifyCode'], ReCaptchaValidator::class, 'message'=> Yii::$app->getModule('contact')->t('Prove you are NOT a robot'), 'on'=>['create']]
         ];
     }
 
