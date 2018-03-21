@@ -22,16 +22,9 @@ or add
 to the require section of your `composer.json` file.
 
 
-MySQL
------
-
-```
-yii migrate --migrationPath=@vendor/powerkernel/yii2-contact/migrations/ --migrationTable={{%contact_migration}}
-```
-
 MongoDB
 -------
 
 ```
-php yii mongodb-migrate --migrationPath=@vendor/powerkernel/yii2-contact/migrations/mongodb/ --migrationCollection=contact_migration
+php yii mongodb-migrate --migrationPath=@vendor/powerkernel/yii2-contact/migrations/ --migrationCollection=contact_migration
 ```
