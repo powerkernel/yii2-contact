@@ -15,12 +15,13 @@ if (!Yii::$app->user->can('staff')) {
 }
 
 
-$menu=[
-    'title'=>Yii::$app->getModule('contact')->t('Web Contact'),
-    'icon'=> 'phone-square',
-    'items'=>[
+$menu = [
+    'title' => Yii::$app->getModule('contact')->t('Web Contact'),
+    'icon' => 'phone-square',
+    'items' => [
         ['icon' => 'mail-bulk', 'label' => Yii::$app->getModule('contact')->t('Manage'), 'url' => ['/contact/web/index'], 'active' => Core::checkMCA('contact', 'web', ['index', 'view'])],
-        ['icon' => 'tools', 'label' => Yii::$app->getModule('contact')->t('Settings'), 'url' => ['/contact/web/setting'], 'active' => Core::checkMCA('contact', 'web', 'setting')],    ],
+        ['icon' => 'tools', 'label' => Yii::$app->getModule('contact')->t('Settings'), 'url' => ['/contact/web/setting'], 'active' => Core::checkMCA('contact', 'web', 'setting')]
+    ],
 ];
-$menu['active']=SideMenu::isActive($menu['items']);
+$menu['active'] = SideMenu::isActive($menu['items']);
 return [$menu];
