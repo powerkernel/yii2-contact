@@ -41,14 +41,8 @@ class Module extends \yii\base\Module
      */
     public function registerTranslations()
     {
-        if(Yii::$app->params['mongodb']['i18n']){
-            $class='common\components\MongoDbMessageSource';
-        }
-        else {
-            $class='common\components\DbMessageSource';
-        }
         Yii::$app->i18n->translations['contact'] = [
-            'class' => $class,
+            'class' => 'common\components\MongoDbMessageSource',
             'on missingTranslation' => function ($event) {
                 $event->sender->handleMissingTranslation($event);
             },

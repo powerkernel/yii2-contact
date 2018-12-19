@@ -2,6 +2,7 @@
 
 namespace powerkernel\contact\models;
 
+use common\behaviors\UTCDateTimeBehavior;
 use himiklab\yii2\recaptcha\ReCaptchaValidator;
 use Yii;
 
@@ -17,13 +18,72 @@ use Yii;
  * @property integer|\MongoDB\BSON\UTCDateTime $created_at
  * @property integer|\MongoDB\BSON\UTCDateTime $updated_at
  */
-class Contact extends ContactBase
+class Contact extends \yii\mongodb\ActiveRecord
 {
     const STATUS_NEW = 'STATUS_NEW';
     const STATUS_DONE = 'STATUS_DONE';
 
     public $verifyCode;
 
+    /**
+     * @inheritdoc
+     */
+    public static function collectionName()
+    {
+        return 'contact_data';
+    }
+
+    /**
+     * @return array
+     */
+    public function attributes()
+    {
+        return [
+            '_id',
+            'name',
+            'email',
+            'subject',
+            'content',
+            'status',
+            'created_at',
+            'updated_at',
+        ];
+    }
+
+    /**
+     * get id
+     * @return \MongoDB\BSON\ObjectID|string
+     */
+    public function getId()
+    {
+        return $this->_id;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            UTCDateTimeBehavior::class,
+        ];
+    }
+
+    /**
+     * @return int timestamp
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updated_at->toDateTime()->format('U');
+    }
+
+    /**
+     * @return int timestamp
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at->toDateTime()->format('U');
+    }
 
     /**
      * get status list
@@ -92,11 +152,10 @@ class Contact extends ContactBase
             [['name', 'email', 'subject'], 'string', 'max' => 255],
             [['email'], 'email'],
 
-            [['verifyCode'], 'required', 'message'=> Yii::$app->getModule('contact')->t('Prove you are NOT a robot'), 'on'=>['create']],
-            [['verifyCode'], ReCaptchaValidator::className(), 'message'=> Yii::$app->getModule('contact')->t('Prove you are NOT a robot'), 'on'=>['create']]
+            [['verifyCode'], 'required', 'message' => Yii::$app->getModule('contact')->t('Prove you are NOT a robot'), 'on' => ['create']],
+            [['verifyCode'], ReCaptchaValidator::class, 'message' => Yii::$app->getModule('contact')->t('Prove you are NOT a robot'), 'on' => ['create']]
         ];
     }
-
 
 
     /**
