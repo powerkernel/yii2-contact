@@ -9,14 +9,14 @@ use Yii;
 /**
  * This is the model class for Contact.
  *
- * @property integer|\MongoDB\BSON\ObjectID|string $id
+ * @property \MongoDB\BSON\ObjectID|string $id
  * @property string $name
  * @property string $email
  * @property string $subject
  * @property string $content
  * @property string $status
- * @property integer|\MongoDB\BSON\UTCDateTime $created_at
- * @property integer|\MongoDB\BSON\UTCDateTime $updated_at
+ * @property \MongoDB\BSON\UTCDateTime $created_at
+ * @property \MongoDB\BSON\UTCDateTime $updated_at
  */
 class Contact extends \yii\mongodb\ActiveRecord
 {
@@ -84,6 +84,7 @@ class Contact extends \yii\mongodb\ActiveRecord
     {
         return $this->created_at->toDateTime()->format('U');
     }
+
 
     /**
      * get status list

@@ -12,6 +12,36 @@ use Yii;
  */
 class Setting extends \yii\mongodb\ActiveRecord
 {
+
+    /**
+     * @inheritdoc
+     */
+    public static function collectionName()
+    {
+        return 'contact_settings';
+    }
+
+    /**
+     * @return array
+     */
+    public function attributes()
+    {
+        return [
+            '_id',
+            'key',
+            'value',
+        ];
+    }
+
+    /**
+     * get id
+     * @return \MongoDB\BSON\ObjectID|string
+     */
+    public function getId()
+    {
+        return $this->_id;
+    }
+
     /**
      * @inheritdoc
      */
