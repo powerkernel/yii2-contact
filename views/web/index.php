@@ -26,6 +26,7 @@ $this->registerJs('$(document).on("pjax:send", function(){ $(".grid-view-overlay
                         ['class' => 'yii\grid\SerialColumn'],
                         //'id',
                         'name',
+                        'phone',
                         'email:email',
                         'subject',
                         [

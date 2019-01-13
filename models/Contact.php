@@ -12,6 +12,7 @@ use Yii;
  * @property \MongoDB\BSON\ObjectID|string $id
  * @property string $name
  * @property string $email
+ * @property string $phone
  * @property string $subject
  * @property string $content
  * @property string $status
@@ -42,6 +43,7 @@ class Contact extends \yii\mongodb\ActiveRecord
             '_id',
             'name',
             'email',
+            'phone',
             'subject',
             'content',
             'status',
@@ -147,10 +149,10 @@ class Contact extends \yii\mongodb\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'email', 'subject', 'content'], 'required'],
+            [['name', 'subject', 'content'], 'required'],
 
             [['content', 'status'], 'string'],
-            [['name', 'email', 'subject'], 'string', 'max' => 255],
+            [['name', 'email', 'phone', 'subject'], 'string', 'max' => 255],
             [['email'], 'email'],
 
             [['verifyCode'], 'required', 'message' => Yii::$app->getModule('contact')->t('Prove you are NOT a robot'), 'on' => ['create']],

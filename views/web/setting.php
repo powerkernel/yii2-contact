@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php foreach ($models as $model) : ?>
                 <div class="form-group">
                     <label for="<?= $model->key ?>"><?= Yii::$app->getModule('contact')->t(ucfirst($model->key)) ?></label>
-                    <input type="text" class="form-control" id="<?= $model->key ?>" name="<?= $model->key ?>"
+                    <input type="<?= $model->key=='mapApi'?'password':'text' ?>" class="form-control" id="<?= $model->key ?>" name="<?= $model->key ?>"
                            placeholder="<?= Yii::$app->getModule('contact')->t(ucfirst($model->key)) ?>" value="<?= $model->value ?>"/>
                 </div>
             <?php endforeach; ?>

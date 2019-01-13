@@ -20,7 +20,7 @@ class Contact extends ContactModel
     {
         return [
             [['status'], 'string'],
-            [['name', 'email', 'subject', 'content', 'created_at'], 'safe'],
+            [['name', 'phone', 'email', 'subject', 'content', 'created_at'], 'safe'],
         ];
     }
 
@@ -55,6 +55,7 @@ class Contact extends ContactModel
 
 
         $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'phone', $this->phone])
             ->andFilterWhere(['like', 'email', $this->email])
             ->andFilterWhere(['like', 'subject', $this->subject])
             ->andFilterWhere(['status', 'content', $this->status]);
