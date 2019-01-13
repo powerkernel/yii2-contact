@@ -40,7 +40,7 @@ function initialize() {
 function loadScript() {
     var script = document.createElement('script');
     script.type = 'text/javascript';
-    script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&callback=initialize&language={$language}';
+    script.src = 'https://maps.googleapis.com/maps/api/js?key={$settings['mapApi']}&v=3.exp&callback=initialize&language={$language}';
     document.body.appendChild(script);
 }
 window.onload = loadScript;

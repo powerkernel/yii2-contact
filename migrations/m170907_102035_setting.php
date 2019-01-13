@@ -22,15 +22,14 @@ class m170907_102035_setting extends \yii\mongodb\Migration
         $this->insert('contact_settings', ['key' => 'country', 'value' => 'country']);
         $this->insert('contact_settings', ['key' => 'phone', 'value' => 'phone']);
         $this->insert('contact_settings', ['key' => 'latLng', 'value' => 'latLng']);
+        $this->insert('contact_settings', ['key' => 'mapApi', 'value' => 'Google Maps API']);
     }
 
     /**
-     * @return bool
+     * @return void
      */
     public function down()
     {
-        echo "m170907_102035_setting cannot be reverted.\n";
-
-        return false;
+        $this->dropCollection('contact_settings');
     }
 }
