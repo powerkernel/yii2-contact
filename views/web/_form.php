@@ -28,7 +28,7 @@ use yii\widgets\ActiveForm;
 
             <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
 
-            <?= $form->field($model, 'verifyCode')->widget(ReCaptcha::className())->label(false) ?>
+            <?= $form->field($model, 'verifyCode')->widget(ReCaptcha::class)->label(false) ?>
 
             <div class="form-group">
                 <?= \common\components\SubmitButton::widget(['text'=>Yii::t('contact', 'Submit'), 'options'=>['class' => 'btn btn-primary']]) ?>
